@@ -1,0 +1,3 @@
+[submodule "ip_repo"]
+	path = ip_repo
+	url = https://github.com/dhytxz/ip_repo
