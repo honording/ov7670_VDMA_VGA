@@ -8,14 +8,14 @@ then
 	exit
 fi
 
-# if [ -d ./$1 ]; then
-# 	echo "Error: Project $1 exists."
-# 	exit
-# fi
+if [ -d ./$1 ]; then
+	echo "Error: Project $1 exists."
+	exit
+fi
 
-# vivado -mode batch -source create_vivado_proj.tcl -tclargs $1
+vivado -mode batch -source create_vivado_proj.tcl -tclargs $1
 
-# xsdk -batch -source create_sdk_proj.tcl $1
+xsdk -batch -source create_sdk_proj.tcl $1
 
 curr_dir=`pwd`
 project_dir="$curr_dir/$1"
