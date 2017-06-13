@@ -88,6 +88,7 @@ save_bd_design
 
 # Generate the bitstream file
 launch_runs impl_1 -to_step write_bitstream -jobs 2
+wait_on_run impl_1
 
 # export SDK
 file mkdir $current_dir/$project_name/$project_name.sdk
