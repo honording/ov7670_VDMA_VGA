@@ -1,10 +1,10 @@
 #!/bin/bash
 set -o nounset
 
-if [ $# != 1 ]
+if [ $# != 2 ]
 then
 	echo "Invalid arguments."
-	echo "Try: $0 <Project Name>"
+	echo "Try: $0 <Project Name> <Version>"
 	exit
 fi
 
@@ -13,9 +13,9 @@ if [ -d ./$1 ]; then
 	exit
 fi
 
-vivado -mode batch -source create_vivado_proj.tcl -tclargs $1
+vivado -mode batch -source create_vivado_proj.tcl -tclargs $1 $2
 
-xsdk -batch -source create_sdk_proj.tcl $1
+xsdk -batch -source create_sdk_proj.tcl $1 $2
 
 curr_dir=`pwd`
 project_dir="$curr_dir/$1"

@@ -1,4 +1,4 @@
-proc ov2vga_create_project {proj_name {board zedboard}} {
+proc ov2vga_create_project {proj_name version {board zedboard}} {
     if {$proj_name eq ""} {
         puts "ERROR: Project name cannot be blank."
         return 0;
@@ -13,8 +13,8 @@ proc ov2vga_create_project {proj_name {board zedboard}} {
     set_property board_part em.avnet.com:zed:part0:1.3 [current_project]
     set_property coreContainer.enable 1 [current_project]
 
-	add_files -fileset constrs_1 -norecurse $curr_dir/src/xdc/zedboard.xdc
-	import_files -fileset constrs_1 $curr_dir/src/xdc/zedboard.xdc
+	add_files -fileset constrs_1 -norecurse $curr_dir/src/xdc/zedboard_${version}.xdc
+	import_files -fileset constrs_1 $curr_dir/src/xdc/zedboard_${version}.xdc
 
     return 1
 }
@@ -56,17 +56,20 @@ proc ov2vga_update_ip_repo {repo_dir} {
 }
 
 set project_name ""
-if {$argc == 1} {
+set version ""
+if {$argc == 2} {
 	set project_name [lindex $argv 0]
+    set version      [lindex $argv 1]
 } else {
 	set project_name "ov7670_to_vga"
+    set version "v2"
 }
 
 set ip_repo_path "ip_repo"
 set current_dir [pwd]
 
 
-if {[ov2vga_create_project $project_name] == 0} {
+if {[ov2vga_create_project $project_name $version] == 0} {
     puts "ERROR: When running ov2vga_create_project()."
     return 0
 }
@@ -77,7 +80,7 @@ if {[ov2vga_update_ip_repo $ip_repo_path] == 0} {
 }
 
 # Create block design
-source $current_dir/src/bd/system.tcl
+source $current_dir/src/bd/system_${version}.tcl
 
 set design_name [get_bd_designs]
 

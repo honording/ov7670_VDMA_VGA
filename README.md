@@ -21,7 +21,10 @@ git clone --recursive https://github.com/dhytxz/ov7670_VDMA_VGA.git
 Scripts in this project can help to create both vivado and xsdk projects as well as the `BOOT.bin` file under the project/boot folder.
 
 ``
-./build.sh <Project Name>
+./build.sh <Project Name> <Version>
 ``
+
+There are two workable versions: `v1` and `v2`. The difference is that `v2` uses ARM to configure the camera through the I2C port; while `v1` uses a dedicated configuration module `ov7670_controller` as shown in the figure above. Register configurations for the camera are different, as well; so that the output image quality is different. In my opinion `v2` has sharper images than `v1`.
+
 ## Thanks!
-This is inspired by and improved from  [Mike's project](http://hamsterworks.co.nz/mediawiki/index.php/Zedboard_OV7670), [UToronto's project](http://www.eecg.toronto.edu/~pc/courses/432/2015/projects/1_paintwithlight/community/), and [Lauri's blog](https://lauri.võsandi.com/hdl/zynq/xilinx-video-capture.html).
+This project is inspired by and improved from  [Mike's project](http://hamsterworks.co.nz/mediawiki/index.php/Zedboard_OV7670), [UToronto's project](http://www.eecg.toronto.edu/~pc/courses/432/2015/projects/1_paintwithlight/community/), [todotani](https://github.com/todotani/OV7670_ZYNQ), and [Lauri's blog](https://lauri.võsandi.com/hdl/zynq/xilinx-video-capture.html).
