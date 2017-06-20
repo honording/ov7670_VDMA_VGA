@@ -33,7 +33,7 @@ if {$argc == 2} {
     set version [lindex $argv 1]
 } else {
     set project_name "ov7670_to_vga"
-    set version "v2"
+    set version "v3"
 }
 
 set workspace_name "$current_dir/${project_name}/${project_name}.sdk"
